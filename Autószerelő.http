@@ -1,0 +1,6 @@
+@Autószerelő_HostAddress = http://localhost:5000
+
+GET {{Autószerelő_HostAddress}}/autoszerelo/
+Accept: application/json
+
+###
