@@ -25,3 +25,6 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Autószerelő.dll"]
+
+LABEL developer="Márton Áron"
+LABEL description="Szoftverfejlesztés CSharp nyelven nagyvállalati környezetben projektmunka"
