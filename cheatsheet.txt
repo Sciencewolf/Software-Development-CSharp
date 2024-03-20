@@ -1,0 +1,7 @@
+docker build -t aronmarton/devcontainer:latest .
+
+docker images
+
+docker rmi <image_id>
+
+docker run --rm -p 8080:8080 -p 8081:8081 -e ASPNETCORE_HTTP_PORT=https://+:8080 -e ASPNETCORE_URLS=http://+:8081 aronmarton/devcontainer:latest

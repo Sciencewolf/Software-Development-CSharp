@@ -5,6 +5,7 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-nanoserver-1809 AS base
 WORKDIR /app
+ENV ASPNETCORE_ENVIRONMENT=Development
 EXPOSE 8080
 EXPOSE 8081
 
