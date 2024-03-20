@@ -1,7 +1,17 @@
-docker build -t aronmarton/devcontainer:latest .
+# build image
+docker build -t aronmarton/devcontainer:latest . 
 
-docker images
+# see all images
+docker images 
 
-docker rmi <image_id>
+# list all processes
+docker ps -a 
 
+# remove image by id
+docker rmi <image_id> 
+
+# run image localport:dockerport 
 docker run --rm -p 8080:8080 -p 8081:8081 -e ASPNETCORE_HTTP_PORT=https://+:8080 -e ASPNETCORE_URLS=http://+:8081 aronmarton/devcontainer:latest
+
+# or run docker like this in interactive mode(-it)
+docker run -it -p 8080:8080 -p 8081:8081 aronmarton/devcontainer
