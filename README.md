@@ -1,12 +1,12 @@
 ## Build project using [Docker](https://www.docker.com/)
-> `docker build -t <image_name> .`
+> **`docker build -t <image_name> .`**
 
 ## Run Docker Image
-> `docker run -it -p 8080:8080 -p 8081:8081 <image_name>`
+> **`docker run -it -p 8080:8080 -p 8081:8081 <image_name>`**
 
 <p>Then, visit</p>
 
-> `http://localhost:8080/swagger/index.html`
+> **`http://localhost:8080/swagger/index.html`**
 
 
 # Alapkövetelmények
