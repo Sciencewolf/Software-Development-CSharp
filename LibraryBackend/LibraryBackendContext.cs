@@ -1,7 +1,7 @@
 ﻿using LibraryBackend.Classes;
 using Microsoft.EntityFrameworkCore;
 
-namespace LibraryBackend.Contexts
+namespace LibraryBackend
 {
     public class LibraryBackendContext : DbContext
     {

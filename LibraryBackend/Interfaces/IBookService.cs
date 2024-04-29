@@ -1,6 +1,4 @@
-﻿using LibraryBackend.Classes;
-
-namespace LibraryBackend.Interfaces
+﻿namespace LibraryBackend.Interfaces
 {
     public interface IBookService
     {

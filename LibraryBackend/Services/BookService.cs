@@ -1,6 +1,4 @@
-﻿using LibraryBackend.Classes;
-using LibraryBackend.Contexts;
-using LibraryBackend.Interfaces;
+﻿using LibraryBackend.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibraryBackend.Services
