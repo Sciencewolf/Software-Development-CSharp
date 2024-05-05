@@ -20,4 +20,8 @@
     <Folder Include="wwwroot\sample-data\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LibraryBackend.Shared\LibraryBackend.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

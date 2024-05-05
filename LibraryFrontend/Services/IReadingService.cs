@@ -1,17 +1,18 @@
-﻿//using LibraryBackend.Classes;
+﻿using LibraryBackend.Shared;
 
-//namespace LibraryBackend.Interfaces
-//{
-//    public interface IReadingService
-//    {
-//        Task Add(Reading reading);
+namespace LibraryFrontend.Services
+{
+    public interface IReadingService
+    {
+        Task Add(Reading reading);
 
-//        Task Delete(Guid Id);
+        Task Delete(Guid Id);
 
-//        Task<Reading> Get(Guid Id);
+        Task<Reading> Get(Guid Id);
 
-//        Task<List<Reading>> GetAll();
+        Task<IEnumerable<Reading>> GetAll();
 
-//        Task Update(Reading reading);
-//    }
-//}
+        Task Update(Reading reading);
+    }
+}
+    

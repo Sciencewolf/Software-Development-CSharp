@@ -1,15 +1,17 @@
-﻿//namespace LibraryFrontend
-//{
-//    public interface IBookService
-//    {
-//        Task Add(Book book);
+﻿using LibraryBackend.Shared;
 
-//        Task Delete(Guid Id);
+namespace LibraryFrontend.Services
+{
+    public interface IBookService
+    {
+        Task Add(Book book);
 
-//        Task<Book> Get(Guid Id);
+        Task Delete(Guid Id);
 
-//        Task<List<Book>> GetAll();
+        Task<Book> Get(Guid Id);
 
-//        Task Update(Book book);
-//    }
-//}
+        Task<IEnumerable<Book>> GetAll();
+
+        Task Update(Book book);
+    }
+}

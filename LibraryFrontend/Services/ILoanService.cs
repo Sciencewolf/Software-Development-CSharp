@@ -1,16 +1,16 @@
-﻿//using LibraryBackend.Classes;
+﻿using LibraryBackend.Shared;
 
-//namespace LibraryBackend.Interfaces;
+namespace LibraryFrontend.Services;
 
-//public interface ILoanService
-//{
-//    Task Add(Loan loan);
+public interface ILoanService
+{
+    Task Add(Loan loan);
 
-//    Task Delete(Guid Id);
+    Task Delete(Guid Id);
 
-//    Task<Loan> Get(Guid Id);
+    Task<Loan> Get(Guid Id);
 
-//    Task<List<Loan>> GetAll();
+    Task<I> GetAll();
 
-//    Task Update(Loan loan);
-//}
+    Task Update(Loan loan);
+}
