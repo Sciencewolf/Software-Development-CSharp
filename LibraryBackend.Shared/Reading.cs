@@ -1,8 +1,7 @@
-﻿using System.Collections.Specialized;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LibraryBackend.Classes
+namespace LibraryBackend.Shared
 {
     public class Reading
     {
