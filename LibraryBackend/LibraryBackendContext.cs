@@ -1,12 +1,11 @@
-﻿using LibraryBackend.Classes;
+﻿using LibraryBackend.Shared;
 using Microsoft.EntityFrameworkCore;
+using Loan = LibraryBackend.Shared.Loan;
 
 namespace LibraryBackend
 {
-    public class LibraryBackendContext : DbContext
+    public class LibraryBackendContext(DbContextOptions<LibraryBackendContext> options) : DbContext(options)
     {
-        public LibraryBackendContext(DbContextOptions<LibraryBackendContext> options) : base(options) { }
-
         public virtual DbSet<Loan> Loan { get; set; }
         public virtual DbSet<Book> Book { get; set; }
         public virtual DbSet<Reading> Reading { get; set; }

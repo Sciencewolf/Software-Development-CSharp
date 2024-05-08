@@ -1,4 +1,4 @@
-﻿using LibraryBackend.Classes;
+﻿using LibraryBackend.Shared;
 
 namespace LibraryBackend.Interfaces;
 

@@ -1,4 +1,6 @@
-﻿namespace LibraryBackend.Interfaces
+﻿using LibraryBackend.Shared;
+
+namespace LibraryBackend.Interfaces
 {
     public interface IBookService
     {

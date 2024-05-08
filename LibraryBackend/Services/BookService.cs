@@ -1,4 +1,5 @@
 ﻿using LibraryBackend.Interfaces;
+using LibraryBackend.Shared;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibraryBackend.Services

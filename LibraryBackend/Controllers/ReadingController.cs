@@ -1,6 +1,5 @@
-﻿using LibraryBackend.Classes;
-using LibraryBackend.Interfaces;
-using LibraryBackend.Services;
+﻿using LibraryBackend.Interfaces;
+using LibraryBackend.Shared;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryBackend.Controllers

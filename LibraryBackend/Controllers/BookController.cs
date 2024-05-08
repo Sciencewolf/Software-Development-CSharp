@@ -1,6 +1,5 @@
-﻿using LibraryBackend.Classes;
-using LibraryBackend.Interfaces;
-using LibraryBackend.Services;
+﻿using LibraryBackend.Interfaces;
+using LibraryBackend.Shared;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryBackend.Controllers
@@ -36,7 +35,7 @@ namespace LibraryBackend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] Book book)
+        public async Task<IActionResult> Add([FromBody] Shared.Book book)
         {
             var existingBook = await _bookService.Get(book.Id);
 
