@@ -1,5 +1,4 @@
 using LibraryBackend;
-using LibraryBackend.Classes;
 using LibraryBackend.Controllers;
 using LibraryBackend.Interfaces;
 using LibraryBackend.Services;

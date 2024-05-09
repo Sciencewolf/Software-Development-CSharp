@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryBackend", "LibraryBa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryFrontend", "LibraryFrontend\LibraryFrontend.csproj", "{C8C185D4-D07D-4505-A9E2-D318C18BFB52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryBackend.Shared", "LibraryBackend.Shared\LibraryBackend.Shared.csproj", "{2E23696F-E0DB-425A-9EE1-E1A4F6CE9277}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryBackend.Shared", "LibraryBackend.Shared\LibraryBackend.Shared.csproj", "{2E23696F-E0DB-425A-9EE1-E1A4F6CE9277}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
