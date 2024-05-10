@@ -1,6 +1,6 @@
 ﻿using LibraryBackend.Shared;
 
-namespace LibraryFrontend;
+namespace LibraryFrontend.Services;
 
 public interface ILoanService
 {

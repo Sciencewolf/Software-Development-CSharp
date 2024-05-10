@@ -1,7 +1,45 @@
-﻿@page "/book/all"
+﻿@page "/Book/all"
+@using LibraryBackend.Shared
+@using LibraryFrontend.Services
+@inject IBookService BookService
 
-<h3>GetAllBook</h3>
+<PageTitle>Get All Book</PageTitle>
+<h3>Get All Book</h3>
+
+@if(_book is null)
+{
+    <p>Loading...</p>
+}
+else {
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year of publication</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var book in _book)
+            {
+                <tr>
+                    <td>@book.Id</td>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.YearOfPublication.ToShortDateString()</td>
+                    <td><a href="/book/@book.Id" class="btn btn-info">Details</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
 @code {
+    private IEnumerable<Book>? _book { get; set; }
 
+    protected override async Task OnInitializedAsync()
+    {
+        _book = await BookService.GetAllAsync();
+    }
 }

@@ -1,26 +1,21 @@
-﻿@page "/book/addbook"
+﻿@page "/Book"
+@using LibraryBackend.Shared
+@using LibraryFrontend.Services
+@inject IBookService BookService
+@inject NavigationManager NavMan
 
-<h3>AddBook</h3>
+<PageTitle>Add Book</PageTitle>
+<h3>Add Book</h3>
 
-<div class="mb-3">
-    <label class="form-label">Title</label>
-    <input class="form-control" placeholder="Title"/>
-</div>
-
-<div class="mb-3">
-    <label class="form-label">Author</label>
-    <input class="form-control" placeholder="Author" />
-</div>
-
-<div class="mb-3">
-    <label class="form-label">Publisher</label>
-    <input class="form-control" placeholder="Publisher" />
-</div>
-
-<div class="mb-3">
-    <button type="button" class="btn btn-info">Submit</button>
-</div>
+<AddBookComponent Book="book" OnValidSubmit="AddBookAsync" />
 
 @code {
-   
+    private Book book { get; set; } = new();
+
+    private async Task AddBookAsync()
+    {
+        await BookService.AddAsync(book);
+        NavMan.NavigateTo("/Book/all");
+    }
+
 }

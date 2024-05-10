@@ -1,6 +1,5 @@
 ﻿using LibraryBackend.Shared;
 using Microsoft.EntityFrameworkCore;
-using Loan = LibraryBackend.Shared.Loan;
 
 namespace LibraryBackend
 {

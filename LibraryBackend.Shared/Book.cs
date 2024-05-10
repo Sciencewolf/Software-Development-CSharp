@@ -10,16 +10,20 @@ public class Book
     public Guid Id { get; set; }
 
     [MaxLength(100)]
+    [Required]
     public string Title { get; set; }
 
     [MaxLength(100)]
+    [Required]
     public string Author { get; set; }
 
     [MaxLength(100)]
+    [Required]
     public string Publisher { get; set; }
 
     // TODO: 
     [CustomValidation(typeof(Book), "ValidateYearOfPublication")]
+    [Required]
     public DateTime YearOfPublication { get; set; }
 
 

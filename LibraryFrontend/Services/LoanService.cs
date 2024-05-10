@@ -1,7 +1,7 @@
 ﻿using LibraryBackend.Shared;
 using System.Net.Http.Json;
 
-namespace LibraryFrontend
+namespace LibraryFrontend.Services
 {
     public class LoanService : ILoanService
     {
@@ -9,7 +9,7 @@ namespace LibraryFrontend
 
         public async Task AddAsync(Loan loan)
         {
-            await _httpClient.PostAsJsonAsync("/loan/addloan", loan);
+            await _httpClient.PostAsJsonAsync("/loan/Loan", loan);
         }
 
         public async Task DeleteAsync(Guid Id)

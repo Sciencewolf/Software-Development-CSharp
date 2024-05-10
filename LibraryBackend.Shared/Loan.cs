@@ -9,13 +9,16 @@ namespace LibraryBackend.Shared
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
+        [Required]
         public Guid BookId { get; set; }
 
         // TODO: 
         [CustomValidation(typeof(Loan), "ValidateRentalDate")]
+        [Required]
         public DateTime BorrowingDate { get; set; }
 
         [CustomValidation(typeof(Loan), "ValidateReturnDate")]
+        [Required]
         public DateTime ReturnDeadLine { get; set; }
 
         public static ValidationResult ValidateRentalDate(DateTime rentalDate, ValidationContext validationContext)

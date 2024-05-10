@@ -1,16 +1,16 @@
 ﻿using LibraryBackend.Shared;
 using System.Net.Http.Json;
 
-namespace LibraryFrontend
+namespace LibraryFrontend.Services
 {
     public class ReadingService : IReadingService
     {
         private HttpClient _httpClient;
-        
+
 
         public async Task AddAsync(Reading reading)
         {
-            await _httpClient.PostAsJsonAsync("/reading/addreading", reading);
+            await _httpClient.PostAsJsonAsync("/reading/Reading", reading);
         }
 
         public async Task DeleteAsync(Guid Id)

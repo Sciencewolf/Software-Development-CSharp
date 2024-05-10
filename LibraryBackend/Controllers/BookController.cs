@@ -35,7 +35,7 @@ namespace LibraryBackend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] Shared.Book book)
+        public async Task<IActionResult> Add([FromBody] Book book)
         {
             var existingBook = await _bookService.Get(book.Id);
 
@@ -46,7 +46,7 @@ namespace LibraryBackend.Controllers
 
             await _bookService.Add(book);
 
-            return Ok();
+            return Ok("Book Added");
         }
 
         [HttpDelete("{id:guid}")]
@@ -61,7 +61,7 @@ namespace LibraryBackend.Controllers
 
             await _bookService.Delete(id);
 
-            return Ok();
+            return Ok("Book Deleted");
         }
 
         [HttpPut("{id:guid}")]
@@ -81,7 +81,7 @@ namespace LibraryBackend.Controllers
 
             await _bookService.Update(NewBook);
 
-            return Ok();
+            return Ok("Book Updated");
         }
     }
 }

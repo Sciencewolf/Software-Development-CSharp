@@ -6,7 +6,7 @@ using LibraryBackend.Shared;
 namespace LibraryBackend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/loan/[controller]")]
     public class LoanController : ControllerBase
     {
         private readonly ILoanService _loanService;
@@ -16,7 +16,7 @@ namespace LibraryBackend.Controllers
             _loanService = loanService;
         }
 
-        [HttpGet("{id:guid}")]
+        [HttpGet("/loan/{id:guid}")]
         public async Task<ActionResult<Loan>> Get(Guid Id)
         {
             var loan = await _loanService.Get(Id);
@@ -29,7 +29,7 @@ namespace LibraryBackend.Controllers
             return Ok(loan);
         }
 
-        [HttpGet]
+        [HttpGet("/loan/all")]
         public async Task<ActionResult<List<Loan>>> GetAll()
         {
             return Ok(await _loanService.GetAll());
@@ -50,7 +50,7 @@ namespace LibraryBackend.Controllers
             return Ok();
         }
 
-        [HttpDelete("{id:guid}")]
+        [HttpDelete("/loan/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var loan = await _loanService.Get(id);
@@ -65,7 +65,7 @@ namespace LibraryBackend.Controllers
             return Ok();
         }
 
-        [HttpPut("{id:guid}")]
+        [HttpPut("/loan/{id:guid}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] Loan NewLoan)
         {
             if (id != NewLoan.Id)

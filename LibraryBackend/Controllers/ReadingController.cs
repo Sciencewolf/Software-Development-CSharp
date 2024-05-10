@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LibraryBackend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/reading/[controller]")]
     public class ReadingController : ControllerBase
     {
         private readonly IReadingService _readingService;
@@ -15,7 +15,7 @@ namespace LibraryBackend.Controllers
             _readingService = readingService;
         }
 
-        [HttpGet("{id:guid}")]
+        [HttpGet("/reading/{id:guid}")]
         public async Task<ActionResult<Reading>> Get(Guid Id)
         {
             var reading = await _readingService.Get(Id);
@@ -28,7 +28,7 @@ namespace LibraryBackend.Controllers
             return Ok(reading);
         }
 
-        [HttpGet]
+        [HttpGet("/reading/all")]
         public async Task<ActionResult<List<Loan>>> GetAll()
         {
             return Ok(await _readingService.GetAll());
@@ -49,7 +49,7 @@ namespace LibraryBackend.Controllers
             return Ok();
         }
 
-        [HttpDelete("{id:guid}")]
+        [HttpDelete("/reading/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var reading = await _readingService.Get(id);
@@ -64,7 +64,7 @@ namespace LibraryBackend.Controllers
             return Ok();
         }
 
-        [HttpPut("{id:guid}")]
+        [HttpPut("/reading/{id:guid}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] Reading NewReading)
         {
             if (id != NewReading.Id)

@@ -1,0 +1,41 @@
+﻿@using LibraryBackend.Shared
+
+<EditForm Model="Book" OnValidSubmit="() => OnValidSubmit()" >
+    <DataAnnotationsValidator />
+
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <InputText class="form-control" @bind-Value="@Book.Title" />
+        <ValidationMessage For="() => Book.Title" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Author</label>
+        <InputText class="form-control" @bind-Value="@Book.Author" />
+        <ValidationMessage For="() => Book.Author" />
+
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Publisher</label>
+        <InputText class="form-control" @bind-Value="@Book.Publisher" />
+        <ValidationMessage For="() => Book.Publisher" />
+
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Year Of Publication</label>
+        <InputDate class="form-control" @bind-Value="@Book.YearOfPublication" />
+        <ValidationMessage For="() => Book.YearOfPublication" />
+
+    </div>
+
+    <button class="btn btn-primary" type="submit">Add Book</button>
+
+</EditForm>
+
+@code {
+    [Parameter] public Book Book { get; set; }
+
+    [Parameter] public Func<Task> OnValidSubmit { get; set; }
+}
