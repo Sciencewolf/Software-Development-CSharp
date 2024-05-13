@@ -6,7 +6,7 @@ using LibraryBackend.Shared;
 namespace LibraryBackend.Controllers
 {
     [ApiController]
-    [Route("/loan/[controller]")]
+    [Route("[controller]")]
     public class LoanController : ControllerBase
     {
         private readonly ILoanService _loanService;
@@ -16,7 +16,7 @@ namespace LibraryBackend.Controllers
             _loanService = loanService;
         }
 
-        [HttpGet("/loan/{id:guid}")]
+        [HttpGet("{id:guid}")]
         public async Task<ActionResult<Loan>> Get(Guid Id)
         {
             var loan = await _loanService.Get(Id);
@@ -29,7 +29,7 @@ namespace LibraryBackend.Controllers
             return Ok(loan);
         }
 
-        [HttpGet("/loan/all")]
+        [HttpGet]
         public async Task<ActionResult<List<Loan>>> GetAll()
         {
             return Ok(await _loanService.GetAll());
@@ -47,10 +47,10 @@ namespace LibraryBackend.Controllers
 
             await _loanService.Add(loan);
 
-            return Ok();
+            return Ok("Loan Add");
         }
 
-        [HttpDelete("/loan/{id:guid}")]
+        [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var loan = await _loanService.Get(id);
@@ -62,10 +62,10 @@ namespace LibraryBackend.Controllers
 
             await _loanService.Delete(id);
 
-            return Ok();
+            return Ok("Loan Delete");
         }
 
-        [HttpPut("/loan/{id:guid}")]
+        [HttpPut("{id:guid}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] Loan NewLoan)
         {
             if (id != NewLoan.Id)
@@ -82,7 +82,7 @@ namespace LibraryBackend.Controllers
 
             await _loanService.Update(NewLoan);
 
-            return Ok();
+            return Ok("Loan Update");
         }
     }
 }

@@ -31,7 +31,7 @@ public class Book
     {
         if (yearOfPublication < DateTime.MinValue || yearOfPublication > DateTime.MaxValue)
         {
-            return new ValidationResult("Out of range.", new[] { validationContext.MemberName });
+            return new ValidationResult("Error at Book: Year Of Publication. Out of range.", [ validationContext.MemberName ]);
         }
 
         return ValidationResult.Success;

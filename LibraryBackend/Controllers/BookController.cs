@@ -46,7 +46,7 @@ namespace LibraryBackend.Controllers
 
             await _bookService.Add(book);
 
-            return Ok("Book Added");
+            return Ok("Book Add");
         }
 
         [HttpDelete("{id:guid}")]
@@ -61,7 +61,7 @@ namespace LibraryBackend.Controllers
 
             await _bookService.Delete(id);
 
-            return Ok("Book Deleted");
+            return Ok("Book Delete");
         }
 
         [HttpPut("{id:guid}")]
@@ -81,7 +81,7 @@ namespace LibraryBackend.Controllers
 
             await _bookService.Update(NewBook);
 
-            return Ok("Book Updated");
+            return Ok("Book Update");
         }
     }
 }

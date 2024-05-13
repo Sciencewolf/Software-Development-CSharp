@@ -23,9 +23,9 @@ namespace LibraryBackend.Shared
 
         public static ValidationResult ValidateRentalDate(DateTime rentalDate, ValidationContext validationContext)
         {
-            if (rentalDate < DateTime.Today)
+            if (rentalDate <= DateTime.Today)
             {
-                return new ValidationResult("Error", new[] { validationContext.MemberName });
+                return new ValidationResult("Error at Loan: RentalDate", [validationContext.MemberName]);
             }
 
             return ValidationResult.Success;
@@ -37,7 +37,7 @@ namespace LibraryBackend.Shared
 
             if (returnDate <= rental.BorrowingDate)
             {
-                return new ValidationResult("Error", new[] { validationContext.MemberName });
+                return new ValidationResult("Error at Loan: ReturnDate must be in future", [validationContext.MemberName]);
             }
 
             return ValidationResult.Success;

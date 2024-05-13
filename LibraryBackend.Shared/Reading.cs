@@ -17,7 +17,17 @@ public class Reading
     [Required]
     public string Address { get; set; }
 
-    [Range(typeof(DateTime), "1900-01-01", "2020-01-01")]
+    [CustomValidation(typeof(Reading), "ValidateDate")]
     [Required]
     public DateTime BirthDate { get; set; }
+
+    public static ValidationResult ValidateDate(DateTime MinDate, ValidationContext validationContext)
+    {
+        var date = new DateTime(1900, 1, 1);
+        if (MinDate < date)
+        {
+            return new ValidationResult("Error at Reading: BirthDate must be 1900/01/01 above", [validationContext.MemberName]);
+        }
+        return ValidationResult.Success;
+    }
 }

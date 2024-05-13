@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LibraryBackend.Controllers
 {
     [ApiController]
-    [Route("/reading/[controller]")]
+    [Route("[controller]")]
     public class ReadingController : ControllerBase
     {
         private readonly IReadingService _readingService;
@@ -15,7 +15,7 @@ namespace LibraryBackend.Controllers
             _readingService = readingService;
         }
 
-        [HttpGet("/reading/{id:guid}")]
+        [HttpGet("{id:guid}")]
         public async Task<ActionResult<Reading>> Get(Guid Id)
         {
             var reading = await _readingService.Get(Id);
@@ -28,7 +28,7 @@ namespace LibraryBackend.Controllers
             return Ok(reading);
         }
 
-        [HttpGet("/reading/all")]
+        [HttpGet]
         public async Task<ActionResult<List<Loan>>> GetAll()
         {
             return Ok(await _readingService.GetAll());
@@ -46,10 +46,10 @@ namespace LibraryBackend.Controllers
 
             await _readingService.Add(reading);
 
-            return Ok();
+            return Ok("Reading Add");
         }
 
-        [HttpDelete("/reading/{id:guid}")]
+        [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var reading = await _readingService.Get(id);
@@ -61,10 +61,10 @@ namespace LibraryBackend.Controllers
 
             await _readingService.Delete(id);
 
-            return Ok();
+            return Ok("Reading Delete");
         }
 
-        [HttpPut("/reading/{id:guid}")]
+        [HttpPut("{id:guid}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] Reading NewReading)
         {
             if (id != NewReading.Id)
@@ -81,7 +81,7 @@ namespace LibraryBackend.Controllers
 
             await _readingService.Update(NewReading);
 
-            return Ok();
+            return Ok("Reading Update");
         }
 
     }
