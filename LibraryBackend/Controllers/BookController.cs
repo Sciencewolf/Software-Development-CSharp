@@ -22,16 +22,23 @@ namespace LibraryBackend.Controllers
 
             if (book is null)
             {
-                return NotFound();
+                return NotFound(new { Error = "Book not found." });
             }
 
             return Ok(book);
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Loan>>> GetAll()
+        public async Task<ActionResult<IEnumerable<Book>>> GetAll() // Changed return type
         {
-            return Ok(await _bookService.GetAll());
+            try
+            {
+                return Ok(await _bookService.GetAll());
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new { Error = "An error occurred while fetching books." }); 
+            }
         }
 
         [HttpPost]

@@ -6,10 +6,10 @@ namespace LibraryBackend.Services
 {
     public class ReadingService : IReadingService
     {
-        private readonly LibraryBackendContext _context;
         private readonly ILogger _logger;
+        private readonly LibraryBackendContext _context;
 
-        public ReadingService(ILogger<ReadingService> logger, LibraryBackendContext context)
+        public ReadingService(ILogger logger, LibraryBackendContext context)
         {
             _logger = logger;
             _context = context;
@@ -17,12 +17,14 @@ namespace LibraryBackend.Services
 
         public async Task Add(Reading reading)
         {
+            _logger.LogInformation("Add reading");
             await _context.Reading.AddAsync(reading);
             await _context.SaveChangesAsync();
         }
 
         public async Task Delete(Guid Id)
         {
+            _logger.LogInformation("Delete reading");
             var reading = await Get(Id);
 
             _context.Reading.Remove(reading);
@@ -33,16 +35,19 @@ namespace LibraryBackend.Services
         public async Task<Reading> Get(Guid Id)
         {
             var reading = await _context.Reading.FindAsync(Id);
+            _logger.LogInformation("Get reading");
             return reading;
         }
 
         public async Task<List<Reading>> GetAll()
         {
+            _logger.LogInformation("Get all reading");
             return await _context.Reading.ToListAsync();
         }
 
         public async Task Update(Reading NewReading)
         {
+            _logger.LogInformation("Update reading");
             var reading = await Get(NewReading.Id);
             reading.Id = NewReading.Id;
             reading.BirthDate = NewReading.BirthDate;

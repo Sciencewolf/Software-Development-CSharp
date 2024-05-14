@@ -10,7 +10,7 @@ namespace LibraryBackend.Interfaces
 
         Task<Book> Get(Guid Id);
 
-        Task<List<Book>> GetAll();
+        Task<IEnumerable<Book>> GetAll();
 
         Task Update(Book book);
     }
