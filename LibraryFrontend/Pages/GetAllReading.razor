@@ -1,7 +1,24 @@
-﻿@page "/reading/all"
+﻿@page "/Reading/all"
+@using LibraryBackend.Shared
+@using LibraryFrontend.Services
+@inject IReadingService ReadingService
 
 <h3>GetAllReading</h3>
 
-@code {
+@if (_reading is null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <p>Text</p>
+}
 
+@code {
+    private IEnumerable<Reading>? _reading { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _reading = await ReadingService.GetAllAsync();
+    }
 }

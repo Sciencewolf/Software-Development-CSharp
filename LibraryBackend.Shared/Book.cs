@@ -13,7 +13,7 @@ public class Book
     [Required]
     public string Title { get; set; }
 
-    [MaxLength(100)]
+    [MaxLength(50)]
     [Required]
     public string Author { get; set; }
 

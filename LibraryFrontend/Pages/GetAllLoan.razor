@@ -1,7 +1,24 @@
-﻿@page "/loan/all"
+﻿@page "/Loan/all"
+@using LibraryBackend.Shared
+@using LibraryFrontend.Services
+@inject ILoanService LoanService
 
 <h3>GetAllLoan</h3>
 
-@code {
+@if (_loan is null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <p>Text</p>
+}
 
+@code {
+    private IEnumerable<Loan>? _loan { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _loan = await LoanService.GetAllAsync();
+    }
 }

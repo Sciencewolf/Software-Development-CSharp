@@ -6,7 +6,11 @@
 <PageTitle>Get All Book</PageTitle>
 <h3>Get All Book</h3>
 
-@if(_book is null)
+@if (error != null)
+{
+    <p class="alert alert-danger">error @error</p>
+}
+else if(_book is null)
 {
     <p>Loading...</p>
 }
@@ -36,10 +40,18 @@ else {
 }
 
 @code {
-    private IEnumerable<Book>? _book { get; set; }
+    private IEnumerable<Book>? _book;
+    private string? error;
 
     protected override async Task OnInitializedAsync()
     {
-        _book = await BookService.GetAllAsync();
+        try
+        {
+            _book = await BookService.GetAllAsync();
+        }
+        catch (HttpRequestException e)
+        {
+            error = e.Source;
+        }
     }
 }

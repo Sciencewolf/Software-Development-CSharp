@@ -14,7 +14,7 @@ public class BookService : IBookService
 
     public async Task AddAsync(Book book)
     {
-        await _httpClient.PostAsJsonAsync("/Book", book);
+        await _httpClient.PostAsJsonAsync("/Book/add", book);
     }
 
     public async Task DeleteAsync(Guid Id)
@@ -36,4 +36,4 @@ public class BookService : IBookService
     {
         await _httpClient.PutAsJsonAsync($"/Book/{Id}", NewBook);
     }
-}
+}   
