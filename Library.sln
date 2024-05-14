@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryFrontend", "LibraryF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryBackend.Shared", "LibraryBackend.Shared\LibraryBackend.Shared.csproj", "{2E23696F-E0DB-425A-9EE1-E1A4F6CE9277}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryTest", "LibraryTest\LibraryTest.csproj", "{6C40DA94-3422-4422-8BCB-853EBEC0B886}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryTest", "LibraryTest\LibraryTest.csproj", "{6C40DA94-3422-4422-8BCB-853EBEC0B886}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
