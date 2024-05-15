@@ -9,15 +9,15 @@ public class Book
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; set; }
 
-    [MaxLength(100)]
+    [MaxLength(100, ErrorMessage = "Max length is 100 characters.")]
     [Required]
     public string Title { get; set; }
 
-    [MaxLength(50)]
+    [MaxLength(25, ErrorMessage = "Max length is 25 characters.")]
     [Required]
     public string Author { get; set; }
 
-    [MaxLength(100)]
+    [MaxLength(50, ErrorMessage = "Max length is 50 characters.")]
     [Required]
     public string Publisher { get; set; }
 

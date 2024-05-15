@@ -10,7 +10,7 @@ public interface ILoanService
 
     Task<Loan> Get(Guid Id);
 
-    Task<List<Loan>> GetAll();
+    Task<IEnumerable<Loan>> GetAll();
 
     Task Update(Loan loan);
 }

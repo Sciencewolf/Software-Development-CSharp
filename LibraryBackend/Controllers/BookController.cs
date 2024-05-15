@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LibraryBackend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/Book")]
     public class BookController : ControllerBase
     {
         private readonly IBookService _bookService;
@@ -29,7 +29,7 @@ namespace LibraryBackend.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Book>>> GetAll() // Changed return type
+        public async Task<ActionResult<IEnumerable<Book>>> GetAll()
         {
             try
             {
@@ -37,7 +37,7 @@ namespace LibraryBackend.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(500, new { Error = "An error occurred while fetching books." }); 
+                return StatusCode(500, new { Error = $"An error occurred while fetching books. {e.Message}" }); 
             }
         }
 

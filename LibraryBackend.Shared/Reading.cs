@@ -9,11 +9,11 @@ public class Reading
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; set; }
 
-    [MaxLength(50)]
+    [MaxLength(25, ErrorMessage = "Max length is 25 characters.")]
     [Required]
     public string Name { get; set; }
 
-    [MaxLength(100)]
+    [MaxLength(50, ErrorMessage = "Max length is 50 characters.")]
     [Required]
     public string Address { get; set; }
 

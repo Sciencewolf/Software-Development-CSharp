@@ -29,6 +29,8 @@ builder.Services.AddSingleton<ILoanService, LoanService>();
 builder.Services.AddSingleton<IBookService, BookService>();
 builder.Services.AddSingleton<IReadingService, ReadingService>();
 
+builder.Services.AddHttpClient();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -63,10 +65,8 @@ app.UseExceptionHandler(errorApp =>
 });
 
 app.UseAuthorization();
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
 app.MapControllers();
+app.UseRouting();
+app.UseStaticFiles();
 
 app.Run();
