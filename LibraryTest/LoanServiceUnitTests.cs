@@ -21,7 +21,7 @@ public class LoanServiceUnitTests : IDisposable
             .Options;
         _context = new LibraryBackendContext(options);
 
-        _loanService = new LoanService(_loggerMock.Object, _context);
+        _loanService = new LoanService(_context);
     }
 
     public void Dispose()
@@ -110,7 +110,7 @@ public class LoanServiceUnitTests : IDisposable
         await _context.SaveChangesAsync();
 
         var loans = await _loanService.GetAll();
-        Assert.Equal(2, loans.Count);
+        Assert.Equal(2, loans.Count());
     }
 
     [Fact]

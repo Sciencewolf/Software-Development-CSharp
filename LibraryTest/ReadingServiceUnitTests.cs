@@ -22,7 +22,7 @@ public class ReadingServiceUnitTests : IDisposable
             .Options;
         _context = new LibraryBackendContext(options);
 
-        _readingService = new ReadingService(_loggerMock.Object, _context);
+        _readingService = new ReadingService(_context);
     }
 
     public void Dispose()
@@ -111,7 +111,7 @@ public class ReadingServiceUnitTests : IDisposable
         await _context.SaveChangesAsync();
 
         var readings = await _readingService.GetAll();
-        Assert.Equal(2, readings.Count);
+        Assert.Equal(2, readings.Count());
     }
 
     [Fact]

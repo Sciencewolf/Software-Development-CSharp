@@ -21,7 +21,7 @@ public class BookServiceUnitTests : IDisposable
             .Options;
         _context = new LibraryBackendContext(options);
 
-        _bookService = new BookService(_loggerMock.Object, _context);
+        _bookService = new BookService(_context);
     }
 
     public void Dispose()
