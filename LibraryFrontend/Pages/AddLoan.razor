@@ -1,7 +1,21 @@
 ﻿@page "/Loan/add"
+@using LibraryFrontend.Components
+@using LibraryBackend.Shared
+@using LibraryFrontend.Services
+@inject ILoanService LoanService
+@inject NavigationManager NavMan
 
-<h3>AddLoan</h3>
+<h3>Add Loan</h3>
+
+<AddLoanComponent Loan="loan" OnValidSubmit="AddLoanAsync" />
 
 @code {
+    private Loan loan { get; set; } = new();
+
+    private async Task AddLoanAsync()
+    {
+        await LoanService.AddAsync(loan);
+        NavMan.NavigateTo("/Loan/all");
+    }
 
 }

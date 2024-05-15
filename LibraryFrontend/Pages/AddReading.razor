@@ -1,7 +1,21 @@
 ﻿@page "/Reading/add"
+@using LibraryBackend.Shared
+@using LibraryFrontend.Services
+@using LibraryFrontend.Components
+@inject IReadingService ReadingService
+@inject NavigationManager NavMan
 
-<h3>AddReading</h3>
+<h3>Add Reading</h3>
+
+<AddReadingComponent Reading="reading" OnValidSubmit="AddReadingAsync"/>
 
 @code {
+    private Reading reading { get; set; } = new();
+
+    private async Task AddReadingAsync()
+    {
+        await ReadingService.AddAsync(reading);
+        NavMan.NavigateTo("/Reading/all");
+    }
 
 }

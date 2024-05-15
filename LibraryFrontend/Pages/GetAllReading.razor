@@ -3,7 +3,7 @@
 @using LibraryFrontend.Services
 @inject IReadingService ReadingService
 
-<h3>GetAllReading</h3>
+<h3>All Reading</h3>
 
 @if (_reading is null)
 {
@@ -11,7 +11,29 @@
 }
 else
 {
-    <p>Text</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>BirthDate</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reading in _reading)
+            {
+                <tr>
+                    <td>@reading.Id</td>
+                    <td>@reading.Name</td>
+                    <td>@reading.Address</td>
+                    <td>@reading.BirthDate.ToShortDateString()</td>
+                    <td><a href="/Reading/@reading.Id" class="btn btn-info">Details</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 
 @code {

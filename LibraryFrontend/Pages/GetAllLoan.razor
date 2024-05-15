@@ -11,7 +11,29 @@
 }
 else
 {
-    <p>Text</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>BirthDate</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var loan in _loan)
+            {
+                <tr>
+                    <td>@loan.Id</td>
+                    <td>@loan.BookId</td>
+                    <td>@loan.BorrowingDate.ToShortDateString()</td>
+                    <td>@loan.ReturnDeadLine.ToShortDateString()</td>
+                    <td><a href="/Loan/@loan.Id" class="btn btn-info">Details</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 
 @code {

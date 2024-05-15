@@ -1,5 +1,32 @@
-﻿<h3>AddLoanComponent</h3>
+﻿@using LibraryBackend.Shared
+
+<EditForm Model="Loan" OnValidSubmit="() => OnValidSubmit()" >
+    <DataAnnotationsValidator />
+
+    <div class="mb-3">
+        <label class="form-label">Book Id</label>
+        <input type="text" @bind-value="@Loan.BookId" placeholder="Enter Book Id" class="form-control"/>
+        <ValidationMessage For="() => Loan.BookId" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Borrowing Date</label>
+        <InputDate class="form-control" @bind-Value="@Loan.BorrowingDate" />
+        <ValidationMessage For="() => Loan.BorrowingDate" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Return Deadline</label>
+        <InputDate class="form-control" @bind-Value="@Loan.ReturnDeadLine" />
+        <ValidationMessage For="() => Loan.ReturnDeadLine" />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Add Loan</button>
+
+</EditForm>
 
 @code {
+    [Parameter] public Loan Loan { get; set; }
 
+    [Parameter] public Func<Task> OnValidSubmit { get; set; }
 }
