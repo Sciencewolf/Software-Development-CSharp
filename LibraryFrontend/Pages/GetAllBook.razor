@@ -1,14 +1,16 @@
 ﻿@page "/Book/all"
 @using LibraryBackend.Shared
 @using LibraryFrontend.Services
+@using LibraryFrontend.Components
 @inject IBookService BookService
+@inject NavigationManager NavMan
 
-<PageTitle>Get All Book</PageTitle>
-<h3>Get All Book</h3>
+<PageTitle>@Title</PageTitle>
+<h3>@Title</h3>
 
-@if (error != null)
+@if (_error)
 {
-    <p class="alert alert-danger">error @error</p>
+    <ErrorComponent OnHome="Home" OnReload="Reload" />   
 }
 else if(_book is null)
 {
@@ -41,7 +43,18 @@ else {
 
 @code {
     private IEnumerable<Book>? _book;
-    private string? error;
+    private bool _error = false;
+    private const string Title = "All Book's";
+    
+    private void Reload()
+    {
+        NavMan.NavigateTo("/Book/all");
+    }
+
+    private void Home()
+    {
+        NavMan.NavigateTo("/");
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -49,9 +62,11 @@ else {
         {
             _book = await BookService.GetAllAsync();
         }
-        catch (HttpRequestException e)
+        catch (Exception e)
         {
-            error = e.Source;
+            Console.WriteLine(e);
+            _book = null;
+            _error = !_error;
         }
     }
 }

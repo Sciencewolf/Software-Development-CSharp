@@ -11,7 +11,7 @@ builder.Services.AddScoped(sp => new HttpClient {
     BaseAddress = new Uri(builder.HostEnvironment.BaseAddress ?? "http://localhost:5026") 
 });
 
-builder.Services.AddTransient<IBookService, BookService>();
+builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<ILoanService, LoanService>();
 builder.Services.AddScoped<IReadingService, ReadingService>();
 

@@ -5,13 +5,14 @@
 @inject NavigationManager NavMan
 @using LibraryFrontend.Components
 
-<PageTitle>Add Book</PageTitle>
-<h3>Add Book</h3>
+<PageTitle>@Title</PageTitle>
+<h3>@Title</h3>
 
 <AddBookComponent Book="book" OnValidSubmit="AddBookAsync" />
 
 @code {
     private Book book { get; set; } = new();
+    private const string Title = "Add Book";
 
     private async Task AddBookAsync()
     {

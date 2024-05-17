@@ -2,6 +2,9 @@
 
 namespace LibraryFrontend.Services;
 
+/// <summary>
+/// <c>iBookService</c> interface for declaring CRUD 
+/// </summary>
 public interface IBookService
 {
     Task AddAsync(Book book);

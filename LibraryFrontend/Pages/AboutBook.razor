@@ -3,9 +3,9 @@
 @using LibraryFrontend.Services
 @inject IBookService BookService
 
-<PageTitle>About Book</PageTitle>
+<PageTitle>@Title</PageTitle>
 
-<h3>About Book</h3>
+<h3>@Title</h3>
 
 @if (_book is null)
 {
@@ -21,6 +21,8 @@ else
     public Guid Id { get; set; }
     
     private Book? _book { get; set; }
+
+    private const string Title = "About Book";
     
     protected override async Task OnInitializedAsync()
     {

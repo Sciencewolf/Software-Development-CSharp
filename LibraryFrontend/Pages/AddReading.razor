@@ -5,12 +5,14 @@
 @inject IReadingService ReadingService
 @inject NavigationManager NavMan
 
-<h3>Add Reading</h3>
+<PageTitle>@Title</PageTitle>
+<h3>@Title</h3>
 
 <AddReadingComponent Reading="reading" OnValidSubmit="AddReadingAsync"/>
 
 @code {
     private Reading reading { get; set; } = new();
+    private const string Title = "Add Reading";
 
     private async Task AddReadingAsync()
     {

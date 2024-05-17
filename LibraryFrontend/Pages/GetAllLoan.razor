@@ -1,11 +1,18 @@
 ﻿@page "/Loan/all"
 @using LibraryBackend.Shared
 @using LibraryFrontend.Services
+@using LibraryFrontend.Components
 @inject ILoanService LoanService
+@inject NavigationManager NavMan
 
-<h3>GetAllLoan</h3>
+<PageTitle>@Title</PageTitle>
+<h3>@Title</h3>
 
-@if (_loan is null)
+@if (_error)
+{
+    <ErrorComponent OnHome="Home" OnReload="Reload" />
+}
+else if (_loan is null)
 {
     <p>Loading...</p>
 }
@@ -38,9 +45,30 @@ else
 
 @code {
     private IEnumerable<Loan>? _loan { get; set; }
+    private bool _error = false;
+    private const string Title = "All Loan's";
+    
+    private void Reload()
+    {
+        NavMan.NavigateTo("/Loan/all");
+    }
+
+    private void Home()
+    {
+        NavMan.NavigateTo("/");
+    }
 
     protected override async Task OnInitializedAsync()
     {
-        _loan = await LoanService.GetAllAsync();
+        try
+        {
+            _loan = await LoanService.GetAllAsync();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message, e.InnerException);
+            _loan = null;
+            _error = !_error;
+        }
     }
 }

@@ -5,17 +5,18 @@
 @inject ILoanService LoanService
 @inject NavigationManager NavMan
 
-<h3>Add Loan</h3>
+<PageTitle>@Title</PageTitle>
+<h3>@Title</h3>
 
 <AddLoanComponent Loan="loan" OnValidSubmit="AddLoanAsync" />
 
 @code {
     private Loan loan { get; set; } = new();
+    private const string Title = "Add Loan";
 
     private async Task AddLoanAsync()
     {
         await LoanService.AddAsync(loan);
         NavMan.NavigateTo("/Loan/all");
     }
-
 }

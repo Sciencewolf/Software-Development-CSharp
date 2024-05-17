@@ -1,11 +1,18 @@
 ﻿@page "/Reading/all"
 @using LibraryBackend.Shared
 @using LibraryFrontend.Services
+@using LibraryFrontend.Components
 @inject IReadingService ReadingService
+@inject NavigationManager NavMan
 
-<h3>All Reading</h3>
+<PageTitle>@Title</PageTitle>
+<h3>@Title</h3>
 
-@if (_reading is null)
+@if (_errorMessage)
+{
+    <ErrorComponent OnHome="Home" OnReload="Reload" />
+}
+else if (Reading is null)
 {
     <p>Loading...</p>
 }
@@ -22,7 +29,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var reading in _reading)
+            @foreach (var reading in Reading)
             {
                 <tr>
                     <td>@reading.Id</td>
@@ -37,10 +44,31 @@ else
 }
 
 @code {
-    private IEnumerable<Reading>? _reading { get; set; }
+    private IEnumerable<Reading>? Reading { get; set; }
+    private bool _errorMessage = false;
+    private const string Title = "All Reading's";
+
+    private void Reload()
+    {
+        NavMan.NavigateTo("/Reading/all");
+    }
+
+    private void Home()
+    {
+        NavMan.NavigateTo("/");
+    }
 
     protected override async Task OnInitializedAsync()
     {
-        _reading = await ReadingService.GetAllAsync();
+        try
+        {
+            Reading = await ReadingService.GetAllAsync();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message, e.InnerException);
+            Reading = null;
+            _errorMessage = !_errorMessage;
+        }
     }
 }
