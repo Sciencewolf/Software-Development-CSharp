@@ -1,17 +1,16 @@
 ﻿using LibraryBackend.Shared;
 
-namespace LibraryBackend.Interfaces
+namespace LibraryBackend.Interfaces;
+
+public interface IReadingService
 {
-    public interface IReadingService
-    {
-        Task Add(Reading reading);
+    Task Add(Reading reading);
 
-        Task Delete(Guid Id);
+    Task Delete(Guid Id);
 
-        Task<Reading> Get(Guid Id);
+    Task<Reading> Get(Guid Id);
 
-        Task<IEnumerable<Reading>> GetAll();
+    Task<IEnumerable<Reading>> GetAll();
 
-        Task Update(Reading reading);
-    }
+    Task Update(Reading reading);
 }

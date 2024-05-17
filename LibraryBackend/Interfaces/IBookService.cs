@@ -1,17 +1,16 @@
 ﻿using LibraryBackend.Shared;
 
-namespace LibraryBackend.Interfaces
+namespace LibraryBackend.Interfaces;
+
+public interface IBookService
 {
-    public interface IBookService
-    {
-        Task Add(Book book);
+    Task Add(Book book);
 
-        Task Delete(Guid Id);
+    Task Delete(Guid Id);
 
-        Task<Book> Get(Guid Id);
+    Task<Book> Get(Guid Id);
 
-        Task<IEnumerable<Book>> GetAll();
+    Task<IEnumerable<Book>> GetAll();
 
-        Task Update(Book book);
-    }
+    Task Update(Book book);
 }
