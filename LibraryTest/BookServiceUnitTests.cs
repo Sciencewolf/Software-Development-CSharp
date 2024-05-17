@@ -24,6 +24,9 @@ public class BookServiceUnitTests : IDisposable
         _bookService = new BookService(_context);
     }
 
+    /// <summary>
+    /// Finalizer(destructor)
+    /// </summary>
     public void Dispose()
     {
         _context.Database.EnsureDeleted();
