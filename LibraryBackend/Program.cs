@@ -20,11 +20,6 @@ builder.Services.AddDbContext<LibraryBackendContext>(options =>
     options.UseLazyLoadingProxies();
 }, ServiceLifetime.Singleton);
 
-builder.Services.AddControllers().AddJsonOptions(options =>
-{
-    options.JsonSerializerOptions.PropertyNamingPolicy = null; 
-});
-
 builder.Services.AddSingleton<ILoanService, LoanService>();
 builder.Services.AddSingleton<IBookService, BookService>();
 builder.Services.AddSingleton<IReadingService, ReadingService>();

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LibraryBackend.Controllers
 {
     [ApiController]
-    [Route("api/Book")]
+    [Route("[controller]")]
     public class BookController : ControllerBase
     {
         private readonly IBookService _bookService;
