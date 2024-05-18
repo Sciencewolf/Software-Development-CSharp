@@ -1,11 +1,22 @@
+@inject NavigationManager NavMan
+
 <div class="d-flex justify-content-center align-items-center gap-2 flex-column">
     <p>Error occurred</p>
-    <button class="btn btn-info" @onclick="OnReload">Reload page</button>
+    <button class="btn btn-info" @onclick="Reload">Reload page</button>
     <div class="">Or</div>
-    <button class="btn btn-info" @onclick="OnHome">Home</button>
+    <button class="btn btn-info" @onclick="Home">Home</button>
 </div>
 
 @code {
-    [Parameter] public EventCallback OnReload { get; set; }
-    [Parameter] public EventCallback OnHome { get; set; }
+    [Parameter] public string ReloadUrl { get; set; }
+    
+    private void Reload()
+    {
+        NavMan.NavigateTo(ReloadUrl);
+    }
+
+    private void Home()
+    {
+        NavMan.NavigateTo("/");
+    }
 }

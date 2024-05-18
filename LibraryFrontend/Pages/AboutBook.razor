@@ -1,31 +1,81 @@
 ﻿@page "/Book/{id:guid}"
 @using LibraryBackend.Shared
 @using LibraryFrontend.Services
+@using LibraryFrontend.Components
 @inject IBookService BookService
+@inject NavigationManager NavMan
 
 <PageTitle>@Title</PageTitle>
-
 <h3>@Title</h3>
 
-@if (_book is null)
+@if (_error)
+{
+    <ErrorComponent ReloadUrl="@Url" />
+}
+else if (_book is null)
 {
     <p>Loading...</p>
 }
 else
 {
-    <p>@_book.Author</p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>YearOfPublication</th>
+        </tr>
+        </thead> 
+        <tbody>
+        <tr>
+            <td>@_book.Id</td>
+            <td>@_book.Title</td>
+            <td>@_book.Author</td>
+            <td>@_book.Publisher</td>
+            <td>@_book.YearOfPublication</td>
+        </tr>
+        </tbody>
+    </table>
+    
+    <div class="d-flex justify-content-center align-items-center gap-2">
+        <button class="btn btn-info" @onclick="UpdateAsync">Update</button>
+        <p>Or</p>
+        <button class="btn btn-danger" @onclick="DeleteAsync">Delete</button>
+    </div>
 }
 
 @code {
-    [Parameter]
-    public Guid Id { get; set; }
-    
+    [Parameter] public Guid Id { get; set; }
     private Book? _book { get; set; }
-
     private const string Title = "About Book";
+    private const string Url = "/Book/all";
+    private bool _error = false;
     
+    private async Task DeleteAsync()
+    {
+        await BookService.DeleteAsync(Id);
+        NavMan.NavigateTo(Url);
+    }
+
+    private async Task UpdateAsync()
+    {
+        await BookService.UpdateAsync(Id, _book);
+        NavMan.NavigateTo(Url);
+    }
+
     protected override async Task OnInitializedAsync()
     {
-        _book = await BookService.GetAsync(Id);
+        try
+        {
+            _book = await BookService.GetAsync(Id);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            _book = null;
+            _error = !_error;
+        }
     }
 }

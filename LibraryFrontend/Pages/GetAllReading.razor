@@ -3,14 +3,13 @@
 @using LibraryFrontend.Services
 @using LibraryFrontend.Components
 @inject IReadingService ReadingService
-@inject NavigationManager NavMan
 
 <PageTitle>@Title</PageTitle>
 <h3>@Title</h3>
 
 @if (_errorMessage)
 {
-    <ErrorComponent OnHome="Home" OnReload="Reload" />
+    <ErrorComponent ReloadUrl="/Reading/all" />
 }
 else if (Reading is null)
 {
@@ -48,16 +47,6 @@ else
     private bool _errorMessage = false;
     private const string Title = "All Reading's";
 
-    private void Reload()
-    {
-        NavMan.NavigateTo("/Reading/all");
-    }
-
-    private void Home()
-    {
-        NavMan.NavigateTo("/");
-    }
-
     protected override async Task OnInitializedAsync()
     {
         try
@@ -66,7 +55,7 @@ else
         }
         catch (Exception e)
         {
-            Console.WriteLine(e.Message, e.InnerException);
+            Console.WriteLine(e);
             Reading = null;
             _errorMessage = !_errorMessage;
         }

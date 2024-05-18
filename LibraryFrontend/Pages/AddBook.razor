@@ -8,15 +8,15 @@
 <PageTitle>@Title</PageTitle>
 <h3>@Title</h3>
 
-<AddBookComponent Book="book" OnValidSubmit="AddBookAsync" />
+<AddBookComponent Book="_book" OnValidSubmit="AddBookAsync" />
 
 @code {
-    private Book book { get; set; } = new();
+    private Book _book { get; set; } = new();
     private const string Title = "Add Book";
 
     private async Task AddBookAsync()
     {
-        await BookService.AddAsync(book);
+        await BookService.AddAsync(_book);
         NavMan.NavigateTo("/Book/all");
     }
 }

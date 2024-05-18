@@ -1,10 +1,80 @@
 ﻿@page "/Loan/{id:guid}"
+@using LibraryBackend.Shared
+@using LibraryFrontend.Services
+@using LibraryFrontend.Components
+@inject ILoanService LoanService
+@inject NavigationManager NavMan
 
 <PageTitle>@Title</PageTitle>
-
 <h3>@Title</h3>
 
+@if (_error)
+{
+    <ErrorComponent ReloadUrl="@Url" />
+}
+else if (_loan is null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Book Id</th>
+            <th>Borrowing Date</th>
+            <th>Return DeadLine</th>
+        </tr>
+        </thead> 
+        <tbody>
+        <tr>
+            <td>@_loan.Id</td>
+            <td>@_loan.BookId</td>
+            <td>@_loan.BorrowingDate</td>
+            <td>@_loan.ReturnDeadLine</td>
+        </tr>
+        </tbody>
+    </table>
+    
+    <div class="d-flex justify-content-center align-items-center gap-2">
+        <button class="btn btn-info" @onclick="UpdateAsync">Update</button>
+        <p>Or</p>
+        <button class="btn btn-danger" @onclick="DeleteAsync">Delete</button>
+    </div>
+}
+
 @code {
+    [Parameter] public Guid Id { get; set; }
+    private Loan _loan { get; set; }
     private const string Title = "About Loan";
+    private const string Url = "/Loan/all";
+    private bool _error = false;
+    
+    private async Task DeleteAsync()
+    {
+        await LoanService.DeleteAsync(Id);
+        NavMan.NavigateTo(Url);
+    }
+
+    private async Task UpdateAsync()
+    {
+        await LoanService.UpdateAsync(Id, _loan);
+        NavMan.NavigateTo(Url);
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _loan = await LoanService.GetAsync(Id);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            _loan = null;
+            _error = !_error;
+        }
+    }
 }
  

@@ -3,14 +3,13 @@
 @using LibraryFrontend.Services
 @using LibraryFrontend.Components
 @inject ILoanService LoanService
-@inject NavigationManager NavMan
 
 <PageTitle>@Title</PageTitle>
 <h3>@Title</h3>
 
 @if (_error)
 {
-    <ErrorComponent OnHome="Home" OnReload="Reload" />
+    <ErrorComponent ReloadUrl="/Loan/all" />
 }
 else if (_loan is null)
 {
@@ -47,16 +46,6 @@ else
     private IEnumerable<Loan>? _loan { get; set; }
     private bool _error = false;
     private const string Title = "All Loan's";
-    
-    private void Reload()
-    {
-        NavMan.NavigateTo("/Loan/all");
-    }
-
-    private void Home()
-    {
-        NavMan.NavigateTo("/");
-    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -66,7 +55,7 @@ else
         }
         catch (Exception e)
         {
-            Console.WriteLine(e.Message, e.InnerException);
+            Console.WriteLine(e);
             _loan = null;
             _error = !_error;
         }

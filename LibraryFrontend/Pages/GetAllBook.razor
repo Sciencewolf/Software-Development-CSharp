@@ -3,14 +3,13 @@
 @using LibraryFrontend.Services
 @using LibraryFrontend.Components
 @inject IBookService BookService
-@inject NavigationManager NavMan
 
 <PageTitle>@Title</PageTitle>
 <h3>@Title</h3>
 
 @if (_error)
 {
-    <ErrorComponent OnHome="Home" OnReload="Reload" />   
+    <ErrorComponent ReloadUrl="/Book/all" />   
 }
 else if(_book is null)
 {
@@ -42,20 +41,11 @@ else {
 }
 
 @code {
-    private IEnumerable<Book>? _book;
+    private IEnumerable<Book>? _book { get; set; }
     private bool _error = false;
     private const string Title = "All Book's";
-    
-    private void Reload()
-    {
-        NavMan.NavigateTo("/Book/all");
-    }
 
-    private void Home()
-    {
-        NavMan.NavigateTo("/");
-    }
-
+    /// <inheritdoc/>
     protected override async Task OnInitializedAsync()
     {
         try

@@ -1,9 +1,79 @@
 ﻿@page "/Reading/{id:guid}"
+@using LibraryBackend.Shared
+@using LibraryFrontend.Services
+@using LibraryFrontend.Components
+@inject IReadingService ReadingService
+@inject NavigationManager NavMan
 
 <PageTitle>@Title</PageTitle>
-
 <h3>@Title</h3>
 
+@if (_error)
+{
+    <ErrorComponent ReloadUrl="@Url" />
+}
+else if (_reading is null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Address</th>
+            <th>Name</th>
+            <th>BirthDay</th>
+        </tr>
+        </thead> 
+        <tbody>
+        <tr>
+            <td>@_reading.Id</td>
+            <td>@_reading.Address</td>
+            <td>@_reading.Name</td>
+            <td>@_reading.BirthDate</td>
+        </tr>
+        </tbody>
+    </table>
+    
+    <div class="d-flex justify-content-center align-items-center gap-2">
+        <button class="btn btn-info" @onclick="UpdateAsync">Update</button>
+        <p>Or</p>
+        <button class="btn btn-danger" @onclick="DeleteAsync">Delete</button>
+    </div>
+}
+
 @code {
+    [Parameter] public Guid Id { get; set; }
+    private Reading _reading { get; set; }
     private const string Title = "About Reading";
+    private const string Url = "/Reading/all";
+    private bool _error = false;
+    
+    private async Task DeleteAsync()
+    {
+        await ReadingService.DeleteAsync(Id);
+        NavMan.NavigateTo(Url);
+    }
+
+    private async Task UpdateAsync()
+    {
+        await ReadingService.UpdateAsync(Id, _reading);
+        NavMan.NavigateTo(Url);
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _reading = await ReadingService.GetAsync(Id);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            _reading = null;
+            _error = !_error;
+        }
+    }
 }
