@@ -7,43 +7,31 @@
 <PageTitle>@Title</PageTitle>
 <h3>@Title</h3>
 
-@if (_error)
-{
-    <ErrorComponent ReloadUrl="/Book/all" />   
-}
-else if(_book is null)
-{
-    <p>Loading...</p>
-}
-else {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Year of publication</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach(var book in _book)
-            {
-                <tr>
-                    <td>@book.Id</td>
-                    <td>@book.Title</td>
-                    <td>@book.Author</td>
-                    <td>@book.YearOfPublication.ToShortDateString()</td>
-                    <td><a href="/book/@book.Id" class="btn btn-info">Details</a></td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Year of publication</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>@Guid</td>
+        <td>Title</td>
+        <td>Author</td>
+        <td>@DateTime.Now.ToShortDateString()</td>
+        <td><a href="/book/@Guid" class="btn btn-info" target="_blank">Details</a></td>
+    </tr>
+    </tbody>
+</table>
 
 @code {
     private IEnumerable<Book>? _book { get; set; }
     private bool _error = false;
     private const string Title = "All Book's";
+    private Guid Guid => Guid.NewGuid();
 
     /// <inheritdoc/>
     protected override async Task OnInitializedAsync()

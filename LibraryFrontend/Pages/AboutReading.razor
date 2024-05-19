@@ -8,41 +8,30 @@
 <PageTitle>@Title</PageTitle>
 <h3>@Title</h3>
 
-@if (_error)
-{
-    <ErrorComponent ReloadUrl="@Url" />
-}
-else if (_reading is null)
-{
-    <p>Loading...</p>
-}
-else
-{
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Address</th>
-            <th>Name</th>
-            <th>BirthDay</th>
-        </tr>
-        </thead> 
-        <tbody>
-        <tr>
-            <td>@_reading.Id</td>
-            <td>@_reading.Address</td>
-            <td>@_reading.Name</td>
-            <td>@_reading.BirthDate</td>
-        </tr>
-        </tbody>
-    </table>
-    
-    <div class="d-flex justify-content-center align-items-center gap-2">
-        <button class="btn btn-info" @onclick="UpdateAsync">Update</button>
-        <p>Or</p>
-        <button class="btn btn-danger" @onclick="DeleteAsync">Delete</button>
-    </div>
-}
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Address</th>
+        <th>Name</th>
+        <th>BirthDay</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>@Id</td>
+        <td>Address</td>
+        <td>Name</td>
+        <td>@DateTime.Now.ToShortDateString()</td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-center align-items-center gap-2 flex-column">
+    <button class="btn btn-info" >Update</button>
+    <div>Or</div>
+    <button class="btn btn-danger" >Delete</button>
+</div>
 
 @code {
     [Parameter] public Guid Id { get; set; }
