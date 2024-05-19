@@ -24,7 +24,7 @@ public class BookService : IBookService
 
     public async Task<IEnumerable<Book>> GetAllAsync()
     {
-        //return await _httpClient.GetFromJsonAsync<IEnumerable<Book>>(Base);
+        // return await _httpClient.GetFromJsonAsync<IEnumerable<Book>>(Base);
         var response = await _httpClient.GetAsync(Base);
         var responseContent = await response.Content.ReadAsStringAsync();
 
@@ -32,9 +32,11 @@ public class BookService : IBookService
 
         if (response.IsSuccessStatusCode)
         {
+            Console.WriteLine("success");
             return JsonSerializer.Deserialize<IEnumerable<Book>>(responseContent);
         }
-        
+
+        Console.WriteLine("not");
         throw new Exception($"Error fetching books: {responseContent}");
     }
 

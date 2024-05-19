@@ -6,7 +6,7 @@ using LibraryBackend.Shared;
 namespace LibraryBackend.Controllers
 {
     [ApiController]
-    [Route("api/Loan")]
+    [Route("[controller]")]
     public class LoanController : ControllerBase
     {
         private readonly ILoanService _loanService;
