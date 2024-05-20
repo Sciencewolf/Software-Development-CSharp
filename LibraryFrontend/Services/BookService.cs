@@ -1,5 +1,4 @@
 ﻿using LibraryBackend.Shared;
-using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 

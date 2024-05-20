@@ -24,8 +24,6 @@ builder.Services.AddSingleton<ILoanService, LoanService>();
 builder.Services.AddSingleton<IBookService, BookService>();
 builder.Services.AddSingleton<IReadingService, ReadingService>();
 
-builder.Services.AddHttpClient();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -37,31 +35,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors(o => o.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
-app.UseExceptionHandler(errorApp =>
-{
-    errorApp.Run(async context =>
-    {
-        context.Response.StatusCode = 500;
-        context.Response.ContentType = "application/json";
-
-        var exceptionHandlerPathFeature =
-            context.Features.Get<IExceptionHandlerPathFeature>();
-
-        if (exceptionHandlerPathFeature?.Error != null)
-        {
-            var error = new
-            {
-                message = "An error occurred while processing your request.",
-                details = exceptionHandlerPathFeature.Error.Message
-            };
-            await context.Response.WriteAsJsonAsync(error);
-        }
-    });
-});
-
-app.UseAuthorization();
 app.MapControllers();
 app.UseRouting();
-app.UseStaticFiles();
 
 app.Run();
