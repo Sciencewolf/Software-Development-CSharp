@@ -7,45 +7,32 @@
 <PageTitle>@Title</PageTitle>
 <h3>@Title</h3>
 
-@if (_error)
-{
-    <ErrorComponent ReloadUrl="/Loan/all" />
-}
-else if (_loan is null)
-{
-    <p>Loading...</p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>BirthDate</th>
-                <th>Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var loan in _loan)
-            {
-                <tr>
-                    <td>@loan.Id</td>
-                    <td>@loan.BookId</td>
-                    <td>@loan.BorrowingDate.ToShortDateString()</td>
-                    <td>@loan.ReturnDeadLine.ToShortDateString()</td>
-                    <td><a href="/Loan/@loan.Id" class="btn btn-info">Details</a></td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>BirthDate</th>
+        <th>Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>@Guid</td>
+        <td>@Guid</td>
+        <td>@DateTime.Today.AddDays(-1).ToShortDateString()</td>
+        <td>@DateTime.Today.ToShortDateString()</td>
+        <td><a href="/Loan/@Guid" class="btn btn-info" target="_blank">Details</a></td>
+    </tr>
+    </tbody>
+</table>
 
 @code {
     private IEnumerable<Loan>? _loan { get; set; }
     private bool _error = false;
     private const string Title = "All Loan's";
+    private Guid Guid => Guid.NewGuid();
 
     protected override async Task OnInitializedAsync()
     {

@@ -7,45 +7,32 @@
 <PageTitle>@Title</PageTitle>
 <h3>@Title</h3>
 
-@if (_errorMessage)
-{
-    <ErrorComponent ReloadUrl="/Reading/all" />
-}
-else if (Reading is null)
-{
-    <p>Loading...</p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>BirthDate</th>
-                <th>Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var reading in Reading)
-            {
-                <tr>
-                    <td>@reading.Id</td>
-                    <td>@reading.Name</td>
-                    <td>@reading.Address</td>
-                    <td>@reading.BirthDate.ToShortDateString()</td>
-                    <td><a href="/Reading/@reading.Id" class="btn btn-info">Details</a></td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>BirthDate</th>
+        <th>Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>@Guid</td>
+        <td>Name</td>
+        <td>Address</td>
+        <td>@DateTime.Today.ToShortDateString()</td>
+        <td><a href="/Reading/@Guid" class="btn btn-info" target="_blank">Details</a></td>
+    </tr>
+    </tbody>
+</table>
 
 @code {
     private IEnumerable<Reading>? Reading { get; set; }
     private bool _errorMessage = false;
     private const string Title = "All Reading's";
+    private Guid Guid => Guid.NewGuid();
 
     protected override async Task OnInitializedAsync()
     {
