@@ -8,7 +8,7 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { 
-    BaseAddress = new Uri(builder.HostEnvironment.BaseAddress ?? "http://localhost:5026") 
+    BaseAddress = new Uri("http://localhost:5195") 
 });
 
 builder.Services.AddScoped<IBookService, BookService>();
